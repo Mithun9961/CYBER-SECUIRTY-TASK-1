@@ -1,87 +1,97 @@
-Network Scanning & Traffic Analysis – Task Summary
+# Network Scanning & Traffic Analysis Project
 
-This repository contains all artifacts used to complete the network scanning and traffic-analysis task, including Nmap scan results, packet-capture files, and supporting documentation.
+## Project Description
+This project documents a basic network reconnaissance and traffic analysis task performed on a local network. The goal was to identify active hosts, enumerate open services, and analyze network traffic to understand normal scan behavior using standard cybersecurity tools.
 
-1. Objective
+---
 
-The objective of this task was to perform:
+## Objectives
+- Perform host discovery on a local subnet
+- Identify open, closed, and filtered TCP ports
+- Analyze network traffic generated during scanning
+- Document findings with scan outputs and packet captures
 
-A network discovery scan on the local subnet (192.168.1.0/24).
+---
 
-Service enumeration of active hosts.
+## Tools & Environment
+- **Nmap 7.95** – Network scanning and service enumeration
+- **Wireshark** – Packet capture and protocol analysis
+- **Kali Linux (Live Boot)** – Testing environment
+- **Target Network:** 192.168.1.0/24 (Local LAN)
 
-Traffic analysis using Wireshark to identify any notable patterns or security-relevant activity.
+---
 
-Consolidate results and provide evidence (logs, datasets, screenshots) with explanations.
+## Files Included
+- `scan_results.xml`  
+  Nmap SYN scan results in XML format containing host discovery and port states.
 
-2. Tools Used
+- `wireshark_scan.pcapng`  
+  Packet capture file recorded during the scan for traffic analysis.
 
-Nmap 7.95 – Network scanning and service enumeration.
+- `README.md`  
+  Documentation explaining the task, methodology, and results.
 
-Wireshark – Packet capture and protocol analysis.
+---
 
-Kali Linux (Live Boot) – Execution environment for scanning and monitoring.
+## Methodology
 
-3. Files Included
+### Step 1: Network Scanning
+A TCP SYN scan was performed on the local subnet to identify live systems and exposed services.
 
-scan_results.xml – Raw Nmap scan output for 192.168.1.0/24 
-
-scan_results
-
-wireshark_scan.pcapng – Packet capture taken during scanning and traffic inspection.
-
-Screenshots (if added) – Evidence of commands executed and results observed.
-
-README.md – Explanation of methodology and findings.
-
-4. What I Did
-4.1 Nmap Scan
-
-Executed a SYN scan against the entire /24 subnet to identify live hosts and open services:
-
+Command used:
 nmap -sS 192.168.1.0/24 -oX scan_results.xml
 
-Findings:
+---
 
-Two hosts were discovered:
 
-192.168.1.1
+---
 
-Open ports: 21 (FTP), 53 (DNS), 80 (HTTP), 443 (HTTPS)
+### Step 2: Scan Findings
 
-Ports 22 (SSH) and 23 (Telnet) appeared filtered.
+#### Host: 192.168.1.1
+- Status: Online
+- Open Ports:
+  - 21 – FTP
+  - 53 – DNS
+  - 80 – HTTP
+  - 443 – HTTPS
+- Filtered Ports:
+  - 22 – SSH
+  - 23 – Telnet
 
-192.168.1.11
+This host appears to be the network gateway or router providing core services.
 
-No open TCP ports detected.
+#### Host: 192.168.1.11
+- Status: Online
+- Open Ports: None detected
 
-Interpretation:
+This host is reachable but does not expose TCP services, likely due to firewall restrictions.
 
-192.168.1.1 is likely the router or gateway, running common management services.
+---
 
-Exposed FTP and HTTP services indicate potential areas for further security review.
+### Step 3: Traffic Analysis
+The packet capture file was analyzed using Wireshark to observe:
+- ARP broadcasts for host discovery
+- TCP SYN and SYN-ACK packets generated during scanning
+- Normal DNS query/response activity
+- Standard HTTP/HTTPS traffic
 
-Host 192.168.1.11 is alive but not exposing TCP services, possibly due to firewalling.
+No abnormal or malicious traffic patterns were observed during analysis.
 
-4.2 Wireshark Traffic Analysis
+---
 
-Review of the .pcapng file focused on:
+## Results & Observations
+- Two live hosts were detected in the subnet
+- Critical services such as HTTP, HTTPS, DNS, and FTP were identified on the gateway
+- Network behavior matched expected patterns for a SYN-based scan
+- Traffic analysis confirmed normal and controlled scan activity
 
-ARP broadcasts to discover local hosts.
+---
 
-TCP SYN packets from the Nmap scan.
+## Conclusion
+This project successfully demonstrates fundamental skills in network enumeration and traffic analysis. The collected artifacts provide clear evidence of scan execution and network behavior, making the project suitable for educational and cybersecurity practice purposes.
 
-DNS queries and responses.
+---
 
-Any anomalies (e.g., repeated retransmissions, suspicious traffic).
-
-Observations:
-
-Packet flow matches expected behaviour for a network discovery and port scan.
-
-No evidence of malicious outbound or inbound traffic during the capture.
-
-5. Conclusion
-
-The task successfully demonstrated basic network enumeration and traffic analysis.
-The included files provide raw evidence of the scanning process, device responses, and overall network behavior.
+## Disclaimer
+All scanning and analysis activities were conducted on a controlled network with proper authorization. This project is intended strictly for educational and defensive security use.
