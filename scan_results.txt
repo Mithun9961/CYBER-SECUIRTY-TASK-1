@@ -1,0 +1,26 @@
+# Nmap 7.95 scan initiated Wed Dec 10 15:11:21 2025 as: /usr/lib/nmap/nmap -sS -oN scan_results.txt 192.168.1.0/24
+Nmap scan report for 192.168.1.1
+Host is up (0.0039s latency).
+Not shown: 994 closed tcp ports (reset)
+PORT    STATE    SERVICE
+21/tcp  open     ftp
+22/tcp  filtered ssh
+23/tcp  filtered telnet
+53/tcp  open     domain
+80/tcp  open     http
+443/tcp open     https
+MAC Address: 14:A7:2B:55:5D:71 (currentoptronics Pvt.Ltd)
+
+Nmap scan report for 192.168.1.2
+Host is up (0.021s latency).
+Not shown: 999 closed tcp ports (reset)
+PORT     STATE    SERVICE
+5555/tcp filtered freeciv
+MAC Address: B0:0C:9D:BA:EE:7A (Quectel Wireless Solutions)
+
+Nmap scan report for 192.168.1.11
+Host is up (0.0000030s latency).
+All 1000 scanned ports on 192.168.1.11 are in ignored states.
+Not shown: 1000 closed tcp ports (reset)
+
+# Nmap done at Wed Dec 10 15:11:52 2025 -- 256 IP addresses (3 hosts up) scanned in 30.93 seconds
